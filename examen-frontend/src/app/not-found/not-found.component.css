@@ -1,0 +1,22 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.not-found-container h1 {
+  font-size: 5rem;
+  margin: 0;
+  color: #2563eb;
+}
+
+.not-found-container a {
+  margin-top: 1rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
