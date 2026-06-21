@@ -4,6 +4,7 @@ import com.examen.dto.LoginRequest;
 import com.examen.dto.LoginResponse;
 import com.examen.entity.Usuario;
 import com.examen.repository.UsuarioRepository;
+import com.examen.util.JwtUtil;
 import com.examen.util.PasswordUtil;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.Consumes;
@@ -25,7 +26,7 @@ public class LoginResource {
     public Response login(LoginRequest request) {
         if (request.getUsuario() == null || request.getPassword() == null) {
             return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new LoginResponse(false, null, null, "Usuario y password son requeridos"))
+                    .entity(new LoginResponse(false, null, null, "Usuario y password son requeridos", null))
                     .build();
         }
 
@@ -33,13 +34,15 @@ public class LoginResource {
 
         if (usuario == null || !PasswordUtil.verificar(request.getPassword(), usuario.getPassword())) {
             return Response.status(Response.Status.UNAUTHORIZED)
-                    .entity(new LoginResponse(false, null, null, "Credenciales inválidas"))
+                    .entity(new LoginResponse(false, null, null, "Credenciales inválidas", null))
                     .build();
         }
 
         String nombreRol = usuario.getRol() != null ? usuario.getRol().getNombre() : null;
+        String token = JwtUtil.generarToken(usuario.getUsuario(), nombreRol);
+
         return Response.ok(
-                new LoginResponse(true, usuario.getUsuario(), nombreRol, "Login exitoso")
+                new LoginResponse(true, usuario.getUsuario(), nombreRol, "Login exitoso", token)
         ).build();
     }
 }

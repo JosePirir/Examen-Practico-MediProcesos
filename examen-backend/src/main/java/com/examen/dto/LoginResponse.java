@@ -6,15 +6,17 @@ public class LoginResponse {
     private String usuario;
     private String rol;
     private String mensaje;
+    private String token;
 
     public LoginResponse() {
     }
 
-    public LoginResponse(boolean success, String usuario, String rol, String mensaje) {
+    public LoginResponse(boolean success, String usuario, String rol, String mensaje, String token) {
         this.success = success;
         this.usuario = usuario;
         this.rol = rol;
         this.mensaje = mensaje;
+        this.token = token;
     }
 
     public boolean isSuccess() {
@@ -47,5 +49,13 @@ public class LoginResponse {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
