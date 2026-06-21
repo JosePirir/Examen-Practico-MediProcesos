@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="header">
+    <h2>Gestión de Usuarios</h2>
+    <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/roles">Roles</a>
+    <a routerLink="/usuarios">Usuarios</a>
+  </nav>
+
+  <div class="error" *ngIf="error">{{ error }}</div>
+
+  <form (ngSubmit)="onSubmit()" class="form-usuario">
+    <h3>{{ editando ? 'Editar Usuario' : 'Nuevo Usuario' }}</h3>
+
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" name="nombre" [(ngModel)]="usuarioActual.nombre" required />
+    </div>
+
+    <div class="form-group">
+      <label>Correo</label>
+      <input type="email" name="correo" [(ngModel)]="usuarioActual.correo" />
+    </div>
+
+    <div class="form-group">
+      <label>Usuario</label>
+      <input type="text" name="usuario" [(ngModel)]="usuarioActual.usuario" required />
+    </div>
+
+    <div class="form-group">
+      <label>
+        Contraseña
+        <span *ngIf="editando">(dejar en blanco para no cambiarla)</span>
+      </label>
+      <input type="password" name="password" [(ngModel)]="usuarioActual.password" />
+    </div>
+
+    <div class="form-group">
+      <label>Rol</label>
+      <select name="rol" [(ngModel)]="idRolSeleccionado" required>
+        <option [ngValue]="null" disabled>Seleccione un rol</option>
+        <option *ngFor="let rol of roles" [ngValue]="rol.idRol">{{ rol.nombre }}</option>
+      </select>
+    </div>
+
+    <button type="submit">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" *ngIf="editando" (click)="cancelar()">Cancelar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Usuario</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.idUsuario }}</td>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.correo }}</td>
+        <td>{{ usuario.usuario }}</td>
+        <td>{{ usuario.nombreRol }}</td>
+        <td>
+          <button (click)="editar(usuario)">Editar</button>
+          <button (click)="eliminar(usuario.idUsuario)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
