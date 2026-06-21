@@ -6,6 +6,7 @@ import com.examen.entity.Rol;
 import com.examen.entity.Usuario;
 import com.examen.repository.RolRepository;
 import com.examen.repository.UsuarioRepository;
+import com.examen.util.RequiereAuth;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RequiereAuth
 public class UsuarioResource {
 
     @EJB

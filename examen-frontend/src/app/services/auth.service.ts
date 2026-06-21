@@ -18,6 +18,7 @@ export class AuthService {
         if (respuesta.success) {
           sessionStorage.setItem('usuario', respuesta.usuario);
           sessionStorage.setItem('rol', respuesta.rol);
+          sessionStorage.setItem('token', respuesta.token);
         }
       })
     );
@@ -26,10 +27,11 @@ export class AuthService {
   logout(): void {
     sessionStorage.removeItem('usuario');
     sessionStorage.removeItem('rol');
+    sessionStorage.removeItem('token');
   }
 
   estaLogueado(): boolean {
-    return sessionStorage.getItem('usuario') !== null;
+    return sessionStorage.getItem('token') !== null;
   }
 
   getUsuarioActual(): string | null {
@@ -38,5 +40,9 @@ export class AuthService {
 
   getRolActual(): string | null {
     return sessionStorage.getItem('rol');
+  }
+
+  getToken(): string | null {
+    return sessionStorage.getItem('token');
   }
 }

@@ -2,6 +2,7 @@ package com.examen.rest;
 
 import com.examen.entity.Rol;
 import com.examen.repository.RolRepository;
+import com.examen.util.RequiereAuth;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -11,6 +12,7 @@ import java.util.List;
 @Path("/roles")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RequiereAuth
 public class RolResource {
 
     @EJB
