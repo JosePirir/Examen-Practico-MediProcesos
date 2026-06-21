@@ -28,7 +28,11 @@ export class LoginComponent {
       next: (respuesta) => {
         this.cargando = false;
         if (respuesta.success) {
-          this.router.navigate(['/usuarios']);
+          if (respuesta.rol === 'Administrador') {
+            this.router.navigate(['/usuarios']);
+          } else {
+            this.router.navigate(['/home']);
+          }
         } else {
           this.error = respuesta.mensaje;
         }

@@ -1,0 +1,33 @@
+.container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-logout {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.info-card {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.mensaje {
+  margin-top: 1rem;
+  color: #6b7280;
+}
